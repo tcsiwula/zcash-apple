@@ -1,0 +1,4 @@
+# ignore mac specific build and tools output
+out/
+tools/
+zcash/
