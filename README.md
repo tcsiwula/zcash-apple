@@ -56,7 +56,13 @@ Please run the commands below once for the first time
 
 ```shell
 $ cd out/usr/local/bin
+
+# for testnet
+$ ./zcash-fetch-params --testnet
+
+# for mainnet
 $ ./zcash-fetch-params
+
 $ ./zcash-init
 $ ./zcashd
 ```
@@ -107,6 +113,37 @@ bash-3.2$
 bash-3.2$ ./zcash-init 
 Creating zcash.conf
 Complete!
+```
+
+## Running the testnetwork
+Modify your ```$HOME/Library/Application\ Support/Zcash/zcash.conf``` file and make sure it looks like this:
+
+``` 
+rpcuser=username
+rpcpassword=`head -c 32 /dev/urandom | base64`
+
+### connect to test network
+testnet=1
+addnode=testnet.z.cash
+```
+You can read more about configs and changing between network [here](https://github
+.com/zcash/zcash/blob/master/contrib/debian/examples/zcash.conf) on zcash's example config file.
+
+Now your config is good to go, start the network back up:
+``` 
+cd $HOME/.zcash/zcash-apple/out/usr/local/bin
+./zcashd
+```
+
+## See / query which network is running
+``` 
+cd $HOME/.zcash/zcash-apple/out/usr/local/bin
+./zcash-cli getmininginfo
+```
+should look like this:
+``` 
+"testnet": true,
+  "chain": "test",
 ```
 
 ## Thanks
